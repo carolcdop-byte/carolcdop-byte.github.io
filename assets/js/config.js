@@ -3,7 +3,7 @@
 // LINKEDIN_URL: tu perfil (vacío = el botón no se muestra).
 // VIDEOS: enlace de YouTube de cada demo (vacío = el hueco del vídeo no se muestra).
 // =====================================================================
-const LINKEDIN_URL = "";
+const LINKEDIN_URL = "https://www.linkedin.com/in/carol-o-/";
 const VIDEOS = {
   demo1: "",
   demo2: "",
