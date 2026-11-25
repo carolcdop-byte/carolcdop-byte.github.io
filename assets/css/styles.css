@@ -254,3 +254,21 @@ section { padding: 72px 0; }
   .menu.abierto { display: flex; }
   .menu a { display: block; padding: 10px 0; font-size: .92rem; border-bottom: 1px solid rgba(255,255,255,.12); }
 }
+
+/* Fotos */
+.portada .contenedor { grid-template-areas: "texto foto" "texto cifras"; gap: 24px 48px; }
+.portada-texto { grid-area: texto; }
+.portada .cifras { grid-area: cifras; }
+.retrato { grid-area: foto; justify-self: center; display: block; width: 220px; }
+.retrato img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; border: 5px solid var(--amarillo); }
+.ia-intro { display: grid; grid-template-columns: 1fr 380px; gap: 40px; align-items: center; margin-bottom: 32px; }
+.ia-intro .intro { margin: 0; }
+.foto-barcelona { margin: 0; }
+.foto-barcelona img { width: 100%; border-radius: var(--radio); }
+.foto-barcelona figcaption { font-size: .88rem; font-weight: 600; color: var(--morado); margin-top: 8px; }
+@media (max-width: 900px) {
+  .portada .contenedor { grid-template-areas: "foto" "texto" "cifras"; }
+  .retrato { width: 128px; justify-self: start; }
+  .retrato img { border-width: 4px; }
+  .ia-intro { grid-template-columns: 1fr; gap: 24px; }
+}

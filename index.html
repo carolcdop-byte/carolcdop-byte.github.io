@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#370355">
 <link rel="icon" href="assets/img/favicon-co.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="assets/css/styles.css?v=3">
+<link rel="stylesheet" href="assets/css/styles.css?v=4">
 </head>
 <body>
 <a class="saltar" href="#contenido"><span lang="es">Saltar al contenido</span><span lang="en">Skip to content</span></a>
@@ -42,7 +42,11 @@
 <!-- INICIO -->
 <section class="portada" id="inicio">
   <div class="contenedor">
-    <div>
+    <picture class="retrato">
+      <source srcset="assets/img/carol-profile.webp" type="image/webp">
+      <img src="assets/img/carol-profile.jpg" width="800" height="800" alt="Carol de Oliveira" fetchpriority="high">
+    </picture>
+    <div class="portada-texto">
       <h1>Carol de Oliveira</h1>
       <p class="rol">Salesforce Functional Lead · Business Analyst &amp; Product Owner</p>
       <p lang="es">Traduzco necesidades de negocio en soluciones Salesforce que la gente usa. Y ahora también construyo con IA: diseño la solución como BA/PO y la levanto con Claude Code, desde los requisitos hasta la org, probada y documentada.</p>
@@ -389,8 +393,19 @@
 <section class="seccion-blanca" id="ia">
   <div class="contenedor">
     <h2><span lang="es">Cómo trabajo con IA</span><span lang="en">How I work with AI</span></h2>
+    <div class="ia-intro">
+      <div>
     <p class="intro" lang="es">Primero, la experiencia: 9 años llevando proyectos Salesforce de principio a fin — descubrimiento, diseño de procesos y funcional, UAT y puesta en producción. La IA va encima de esa experiencia, en dos niveles: para construir, con Claude Code como motor técnico, y dentro de Salesforce, con Agentforce. Yo defino el problema, las reglas de negocio y las pruebas, y nada sale sin que lo haya revisado y probado en la org.</p>
     <p class="intro" lang="en">Experience comes first: 9 years delivering Salesforce projects end to end — discovery, process and functional design, UAT and go-live. AI sits on top of that experience, at two levels: to build, with Claude Code as my technical engine, and inside Salesforce, with Agentforce. I define the problem, the business rules and the tests, and nothing ships until I've reviewed it and tested it in the org.</p>
+      </div>
+      <figure class="foto-barcelona">
+        <picture>
+          <source srcset="assets/img/carol-barcelona.webp" type="image/webp">
+          <img src="assets/img/carol-barcelona.jpg" width="1400" height="1018" loading="lazy" data-alt-es="Carol de Oliveira, de espaldas, con Barcelona al fondo" data-alt-en="Carol de Oliveira, from behind, with Barcelona in the background" alt="Carol de Oliveira, from behind, with Barcelona in the background">
+        </picture>
+        <figcaption><span lang="es">Desde Barcelona</span><span lang="en">Based in Barcelona</span></figcaption>
+      </figure>
+    </div>
     <ol class="pasos">
       <li><h3>Discovery</h3><p lang="es">Problema de negocio, usuarios, historias y criterios de aceptación. Plan aprobado antes de construir.</p><p lang="en">Business problem, users, stories and acceptance criteria. Plan approved before building.</p></li>
       <li><h3><span lang="es">Diseño</span><span lang="en">Design</span></h3><p lang="es">Modelo de datos, procesos y reglas; decido qué hace la IA y qué decide una persona.</p><p lang="en">Data model, processes and rules; I decide what the AI does and what a person decides.</p></li>
@@ -474,11 +489,11 @@
 <!-- TRABAJA CONMIGO -->
 <section id="work-with-me">
   <div class="contenedor">
-    <span class="insignia"><span lang="es">Disponible ya · Freelance e interim</span><span lang="en">Available now · Freelance &amp; interim</span></span>
+    <span class="insignia"><span lang="es">Disponible ya · Freelance y por proyecto</span><span lang="en">Available now · Freelance &amp; project-based</span></span>
     <h2><span lang="es">Trabaja conmigo</span><span lang="en">Work with me</span></h2>
     <ul class="servicios">
       <li><h3>Functional Lead / Business Analyst</h3><p lang="es">Requisitos, diseño funcional, historias de usuario y UAT, hasta la puesta en producción.</p><p lang="en">Requirements, functional design, user stories and UAT, through to go-live.</p></li>
-      <li><h3><span lang="es">PM / Programme Manager interim</span><span lang="en">Interim PM / Programme Manager</span></h3><p lang="es">Planificación, stakeholders y coordinación de equipos internos y de proveedor.</p><p lang="en">Planning, stakeholders and coordination of internal and vendor teams.</p></li>
+      <li><h3><span lang="es">Project &amp; Programme Manager Salesforce</span><span lang="en">Salesforce Project &amp; Programme Manager</span></h3><p lang="es">Planificación, stakeholders y coordinación de equipos internos y de proveedor.</p><p lang="en">Planning, stakeholders and coordination of internal and vendor teams.</p></li>
       <li><h3><span lang="es">POC de Agentforce e IA</span><span lang="en">Agentforce &amp; AI POC</span></h3><p lang="es">Una POC funcionando en 2 semanas.</p><p lang="en">A working POC in 2 weeks.</p></li>
       <li><h3><span lang="es">Health check de org Salesforce y auditoría de licencias</span><span lang="en">Salesforce org health check &amp; licence audit</span></h3><p lang="es">Licencias, permisos, automatizaciones e integraciones. Revisión de configuración y seguridad, no de la ejecución de las integraciones.</p><p lang="en">Licences, permissions, automations and integrations. A configuration and security review, not of how the integrations run.</p></li>
       <li><h3><span lang="es">Preventa y POCs para partners</span><span lang="en">Pre-sales &amp; POCs for partners</span></h3><p lang="es">Demos de la solución, apoyo en propuestas y pruebas de concepto.</p><p lang="en">Solution demos, proposal support and proofs of concept.</p></li>
