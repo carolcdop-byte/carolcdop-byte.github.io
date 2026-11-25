@@ -31,9 +31,8 @@
 
   // LinkedIn
   document.querySelectorAll("[data-linkedin]").forEach(function (a) {
-    if (LINKEDIN_URL) { a.href = LINKEDIN_URL; a.hidden = false; } else { a.hidden = true; }
+    if (LINKEDIN_URL) a.href = LINKEDIN_URL; // si está vacío, queda el enlace escrito en el HTML
   });
-  document.querySelectorAll("[data-linkedin-pendiente]").forEach(function (p) { p.hidden = !!LINKEDIN_URL; });
 
   // Vídeos de YouTube (youtube-nocookie, solo si hay enlace)
   function idYoutube(url) {

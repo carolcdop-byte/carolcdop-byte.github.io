@@ -1,6 +1,6 @@
 // =====================================================================
 // CONFIGURACIÓN — lo único que hay que tocar (la usan la web y la política de privacidad)
-// LINKEDIN_URL: tu perfil (vacío = el botón no se muestra).
+// LINKEDIN_URL: tu perfil (si cambia, cámbialo también en el HTML).
 // VIDEOS: enlace de YouTube de cada demo (vacío = el hueco del vídeo no se muestra).
 // =====================================================================
 const LINKEDIN_URL = "https://www.linkedin.com/in/carol-o-/";
