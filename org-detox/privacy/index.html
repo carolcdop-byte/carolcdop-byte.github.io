@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Org Detox Scan · Política de privacidad / Privacy policy / Política de privacidade</title>
-<meta name="description" content="Org Detox Scan no recoge datos: todo se procesa en tu navegador. We don't collect any data. Não coletamos dados.">
+<meta name="description" content="Org Detox Scan no recoge datos: todo se procesa en tu navegador. We don't collect any data. Não coletamos dados. Compatible con orgs de Salesforce · Works with Salesforce orgs.">
 <meta name="theme-color" content="#370355">
 <link rel="icon" href="../../assets/img/nmd-emblema.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/css/styles.css">
+<style>.legal .marca { font-size: .85em; opacity: .8; margin-top: 1.5em; }</style>
 </head>
 <body>
 <header class="cabecera">
@@ -26,12 +27,14 @@
   <!-- ============================== ES ============================== -->
   <section id="es" lang="es">
     <h1>Política de privacidad · Org Detox Scan</h1>
-    <p><em>Última actualización: 23 de noviembre de 2026</em></p>
+    <p><em>Última actualización: 26 de noviembre de 2026 (versión 0.5.0)</em></p>
     <p class="resumen">No recogemos datos. Todo es local.</p>
-    <p>Org Detox Scan es una extensión de Chrome de No More Drama que analiza la salud de una org de Salesforce.</p>
+    <p>Org Detox Scan es una extensión de Chrome de No More Drama que revisa en modo solo lectura la configuración de una org. <span class="compat">Compatible con orgs de Salesforce.</span></p>
 
     <h2>Qué lee la extensión</h2>
     <p>Metadatos y datos de configuración de tu org (licencias, usuarios, permisos, automatizaciones, objetos y campos) y una muestra pequeña de registros recientes para ver qué campos se usan. De esos registros solo se cuenta si cada campo está relleno o vacío: los valores no se guardan ni se muestran. Los lee mediante la API de Salesforce, usando la sesión que ya tienes abierta en el navegador.</p>
+
+    <p>No lee archivos, adjuntos, emails, notas, informes ni contraseñas.</p>
 
     <h2>Nada sale de tu navegador</h2>
     <ul>
@@ -42,14 +45,17 @@
     </ul>
 
     <h2>Solo lectura</h2>
-    <p>La extensión solo hace consultas de lectura (GET). Nunca crea, modifica ni borra nada en tu org.</p>
+    <p>La extensión solo hace consultas de lectura (GET). Nunca crea, modifica ni borra nada en tu org. Cada informe incluye un <strong>registro de llamadas</strong> (método y endpoint, sin el dominio de la org ni Ids) que puedes exportar a .txt para comprobarlo.</p>
 
     <h2>Qué se guarda en tu equipo y cómo borrarlo</h2>
     <ul>
-      <li><strong>Qué se guarda:</strong> solo tus preferencias (coste por licencia, días de inactividad, tope de API e idioma), en <code>chrome.storage.local</code>.</li>
+      <li><strong>Qué se guarda:</strong> solo tus preferencias (tope de API, días de inactividad, coste por licencia y por paquete, idioma y si ya viste el aviso del sandbox), en <code>chrome.storage.local</code>. Puedes borrarlas desde la pantalla <em>Seguridad y privacidad</em> de la extensión.</li>
       <li><strong>Resultados del análisis:</strong> no se guardan. Desaparecen al cerrar la pestaña.</li>
       <li><strong>Cómo borrarlo:</strong> al quitar la extensión de Chrome (<code>chrome://extensions</code> → Quitar), Chrome borra también sus preferencias. No queda nada más que borrar.</li>
     </ul>
+
+    <h2>Lo que tú decides sacar del navegador</h2>
+    <p>Los PDF (ejecutivo y técnico, que incluye nombres de usuario), el export <strong>para revisión (anonimizado)</strong> en PDF y CSV (personas sustituidas por "Usuario 014 · Perfil" y sin el nombre de la org salvo que lo marques), el resumen JSON, el texto de "¿Esto no es correcto?" y el registro de llamadas. El JSON, el texto de feedback y el registro no incluyen nombres de usuario ni el Id de la org. Nada de esto se envía solo: se descarga o se copia en tu equipo y tú decides con quién compartirlo.</p>
 
     <h2>Permisos de Chrome y por qué</h2>
     <div class="tabla"><table>
@@ -57,14 +63,16 @@
       <tbody>
         <tr><td><code>cookies</code></td><td>Leer la cookie de sesión <code>sid</code> de Salesforce del dominio de la pestaña activa para llamar a la API de esa misma org. No se guarda ni se envía a ningún otro sitio.</td></tr>
         <tr><td><code>storage</code></td><td>Guardar en el propio navegador tus preferencias: coste por licencia, días de inactividad, tope de API e idioma.</td></tr>
-        <tr><td><code>https://*.salesforce.com/*</code></td><td>Llamadas GET a la API REST de la org (<code>*.my.salesforce.com</code>) y lectura de su cookie de sesión.</td></tr>
-        <tr><td><code>https://*.force.com/*</code></td><td>Reconocer la org cuando la pestaña es Lightning (<code>*.lightning.force.com</code>) o Visualforce, y leer su cookie de sesión.</td></tr>
-        <tr><td><code>https://*.salesforce-setup.com/*</code></td><td>Reconocer la org cuando la pestaña es Configuración en los dominios nuevos de Salesforce.</td></tr>
+        <tr><td><code>https://*.my.salesforce.com/*</code></td><td>Llamadas GET a la API REST de la org y lectura de su cookie de sesión.</td></tr>
+        <tr><td><code>https://*.lightning.force.com/*</code></td><td>Reconocer la org cuando la pestaña es Lightning y leer su cookie para saber el Id de la org.</td></tr>
+        <tr><td><code>https://*.vf.force.com/*</code></td><td>Lo mismo cuando la pestaña es una página Visualforce.</td></tr>
+        <tr><td><code>https://*.my.salesforce-setup.com/*</code></td><td>Lo mismo cuando la pestaña es Configuración en los dominios nuevos.</td></tr>
       </tbody>
     </table></div>
 
     <h2>Contacto</h2>
     <p>Escríbeme por LinkedIn: <a data-linkedin href="https://www.linkedin.com/in/carol-o-/" rel="noopener">Carol de Oliveira · No More Drama</a>.</p>
+    <p class="marca">Salesforce y Agentforce son marcas comerciales de Salesforce, Inc. Org Detox Scan no está afiliado, patrocinado ni respaldado por Salesforce, Inc.</p>
   </section>
 
   <hr>
@@ -72,12 +80,14 @@
   <!-- ============================== EN ============================== -->
   <section id="en" lang="en">
     <h1>Privacy policy · Org Detox Scan</h1>
-    <p><em>Last updated: 23 November 2026</em></p>
+    <p><em>Last updated: 26 November 2026 (version 0.5.0)</em></p>
     <p class="resumen">We don't collect any data. Everything stays local.</p>
-    <p>Org Detox Scan is a Chrome extension by No More Drama that checks the health of a Salesforce org.</p>
+    <p>Org Detox Scan is a Chrome extension by No More Drama that reviews an org's configuration in read-only mode. <span class="compat">Works with Salesforce orgs.</span></p>
 
     <h2>What the extension reads</h2>
     <p>Metadata and configuration of your Salesforce org (licenses, users, permissions, automations, objects and fields) and a small sample of recent records to see which fields are used. It only counts whether each field is filled or empty: values are not stored or shown. It reads them through the Salesforce API with the session you already have open in the browser.</p>
+
+    <p>It does not read files, attachments, emails, notes, reports or passwords.</p>
 
     <h2>Nothing leaves your browser</h2>
     <ul>
@@ -88,14 +98,17 @@
     </ul>
 
     <h2>Read-only</h2>
-    <p>The extension only performs read (GET) requests. It never creates, changes or deletes anything in your org.</p>
+    <p>The extension only performs read (GET) requests. It never creates, changes or deletes anything in your org. Every report includes a <strong>call log</strong> (method and endpoint, without the org domain or IDs) that you can export to .txt to check it.</p>
 
     <h2>What is stored on your computer and how to delete it</h2>
     <ul>
-      <li><strong>What is stored:</strong> only your preferences (license cost, inactivity days, API cap and language) in <code>chrome.storage.local</code>.</li>
+      <li><strong>What is stored:</strong> only your preferences (API cap, inactivity days, cost per license and per package, language and whether you have seen the sandbox notice) in <code>chrome.storage.local</code>. You can delete them from the extension's <em>Security and privacy</em> screen.</li>
       <li><strong>Scan results:</strong> not stored. They disappear when you close the tab.</li>
       <li><strong>How to delete it:</strong> when you remove the extension from Chrome (<code>chrome://extensions</code> → Remove), Chrome also deletes its preferences. Nothing else is left to delete.</li>
     </ul>
+
+    <h2>What you choose to take out of the browser</h2>
+    <p>The PDFs (executive and technical, which includes user names), the <strong>export for review (anonymized)</strong> as PDF and CSV (people replaced by "User 014 · Profile", and without the org name unless you tick it), the JSON summary, the "Is this not right?" text and the call log. The JSON, the feedback text and the call log contain no user names and no org ID. None of this is sent automatically: it is downloaded or copied to your computer and you decide who to share it with.</p>
 
     <h2>Chrome permissions and why</h2>
     <div class="tabla"><table>
@@ -103,14 +116,16 @@
       <tbody>
         <tr><td><code>cookies</code></td><td>Read the Salesforce <code>sid</code> session cookie for the active tab's org to call that same org's API. It is never stored or sent anywhere else.</td></tr>
         <tr><td><code>storage</code></td><td>Store your preferences locally: license cost, inactivity days, API cap and language.</td></tr>
-        <tr><td><code>https://*.salesforce.com/*</code></td><td>GET calls to the org's REST API (<code>*.my.salesforce.com</code>) and reading its session cookie.</td></tr>
-        <tr><td><code>https://*.force.com/*</code></td><td>Recognise the org when the tab is Lightning (<code>*.lightning.force.com</code>) or Visualforce, and read its session cookie.</td></tr>
-        <tr><td><code>https://*.salesforce-setup.com/*</code></td><td>Recognise the org when the tab is Setup on Salesforce's newer domains.</td></tr>
+        <tr><td><code>https://*.my.salesforce.com/*</code></td><td>GET calls to the org's REST API and reading its session cookie.</td></tr>
+        <tr><td><code>https://*.lightning.force.com/*</code></td><td>Recognise the org when the tab is Lightning and read its cookie to know the org ID.</td></tr>
+        <tr><td><code>https://*.vf.force.com/*</code></td><td>Same when the tab is a Visualforce page.</td></tr>
+        <tr><td><code>https://*.my.salesforce-setup.com/*</code></td><td>Same when the tab is Setup on the newer domains.</td></tr>
       </tbody>
     </table></div>
 
     <h2>Contact</h2>
     <p>Message me on LinkedIn: <a data-linkedin href="https://www.linkedin.com/in/carol-o-/" rel="noopener">Carol de Oliveira · No More Drama</a>.</p>
+    <p class="marca">Salesforce and Agentforce are trademarks of Salesforce, Inc. Org Detox Scan is not affiliated with, sponsored or endorsed by Salesforce, Inc.</p>
   </section>
 
   <hr>
@@ -118,12 +133,14 @@
   <!-- ============================== PT ============================== -->
   <section id="pt" lang="pt-BR">
     <h1>Política de privacidade · Org Detox Scan</h1>
-    <p><em>Última atualização: 23 de novembro de 2026</em></p>
+    <p><em>Última atualização: 26 de novembro de 2026 (versão 0.5.0)</em></p>
     <p class="resumen">Não coletamos dados. Tudo fica no seu computador.</p>
-    <p>Org Detox Scan é uma extensão do Chrome da No More Drama que analisa a saúde de uma org do Salesforce.</p>
+    <p>O Org Detox Scan é uma extensão do Chrome da No More Drama que revisa, em modo somente leitura, a configuração de uma org. <span class="compat">Compatível com orgs Salesforce.</span></p>
 
     <h2>O que a extensão lê</h2>
     <p>Metadados e configuração da sua org do Salesforce (licenças, usuários, permissões, automações, objetos e campos) e uma pequena amostra de registros recentes para ver quais campos são usados. Só conta se cada campo está preenchido ou vazio: os valores não são salvos nem exibidos. A leitura é feita pela API do Salesforce, com a sessão que você já tem aberta no navegador.</p>
+
+    <p>Não lê arquivos, anexos, e-mails, notas, relatórios nem senhas.</p>
 
     <h2>Nada sai do seu navegador</h2>
     <ul>
@@ -134,14 +151,17 @@
     </ul>
 
     <h2>Somente leitura</h2>
-    <p>A extensão só faz consultas de leitura (GET). Nunca cria, altera ou exclui nada na sua org.</p>
+    <p>A extensão só faz consultas de leitura (GET). Nunca cria, altera ou exclui nada na sua org. Cada relatório inclui um <strong>registro de chamadas</strong> (método e endpoint, sem o domínio da org nem IDs) que você pode exportar para .txt para conferir.</p>
 
     <h2>O que fica salvo no seu computador e como apagar</h2>
     <ul>
-      <li><strong>O que fica salvo:</strong> só as suas preferências (custo por licença, dias de inatividade, limite de API e idioma), em <code>chrome.storage.local</code>.</li>
+      <li><strong>O que fica salvo:</strong> só as suas preferências (limite de API, dias de inatividade, custo por licença e por pacote, idioma e se você já viu o aviso do sandbox), em <code>chrome.storage.local</code>. Você pode apagá-las na tela <em>Segurança e privacidade</em> da extensão.</li>
       <li><strong>Resultados da análise:</strong> não são salvos. Somem ao fechar a aba.</li>
       <li><strong>Como apagar:</strong> ao remover a extensão do Chrome (<code>chrome://extensions</code> → Remover), o Chrome também apaga as preferências. Não sobra mais nada para apagar.</li>
     </ul>
+
+    <h2>O que você decide tirar do navegador</h2>
+    <p>Os PDFs (executivo e técnico, que inclui nomes de usuário), a <strong>exportação para revisão (anonimizada)</strong> em PDF e CSV (pessoas substituídas por "Usuário 014 · Perfil" e sem o nome da org, a menos que você marque), o resumo JSON, o texto de "Isto não está correto?" e o registro de chamadas. O JSON, o texto de feedback e o registro não incluem nomes de usuário nem o ID da org. Nada disso é enviado sozinho: é baixado ou copiado no seu computador e você decide com quem compartilhar.</p>
 
     <h2>Permissões do Chrome e por quê</h2>
     <div class="tabla"><table>
@@ -149,14 +169,16 @@
       <tbody>
         <tr><td><code>cookies</code></td><td>Ler o cookie de sessão <code>sid</code> do Salesforce da org da aba ativa para chamar a API dessa mesma org. Nunca é salvo nem enviado para outro lugar.</td></tr>
         <tr><td><code>storage</code></td><td>Salvar localmente as suas preferências (custo por licença, dias de inatividade, limite de API e idioma).</td></tr>
-        <tr><td><code>https://*.salesforce.com/*</code></td><td>Chamadas GET à API REST da org (<code>*.my.salesforce.com</code>) e leitura do cookie de sessão.</td></tr>
-        <tr><td><code>https://*.force.com/*</code></td><td>Reconhecer a org quando a aba é Lightning (<code>*.lightning.force.com</code>) ou Visualforce e ler o cookie de sessão.</td></tr>
-        <tr><td><code>https://*.salesforce-setup.com/*</code></td><td>Reconhecer a org quando a aba é a Configuração nos domínios novos do Salesforce.</td></tr>
+        <tr><td><code>https://*.my.salesforce.com/*</code></td><td>Chamadas GET à API REST da org e leitura do cookie de sessão.</td></tr>
+        <tr><td><code>https://*.lightning.force.com/*</code></td><td>Reconhecer a org quando a aba é Lightning e ler o cookie para saber o ID da org.</td></tr>
+        <tr><td><code>https://*.vf.force.com/*</code></td><td>O mesmo quando a aba é uma página Visualforce.</td></tr>
+        <tr><td><code>https://*.my.salesforce-setup.com/*</code></td><td>O mesmo quando a aba é a Configuração nos domínios novos.</td></tr>
       </tbody>
     </table></div>
 
     <h2>Contato</h2>
     <p>Fale comigo pelo LinkedIn: <a data-linkedin href="https://www.linkedin.com/in/carol-o-/" rel="noopener">Carol de Oliveira · No More Drama</a>.</p>
+    <p class="marca">Salesforce e Agentforce são marcas comerciais da Salesforce, Inc. O Org Detox Scan não é afiliado, patrocinado nem endossado pela Salesforce, Inc.</p>
   </section>
 </main>
 
