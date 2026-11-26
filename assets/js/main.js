@@ -14,8 +14,9 @@
     boton.textContent = lang === "es" ? "EN" : "ES";
     boton.setAttribute("aria-label", lang === "es" ? "Switch to English" : "Cambiar a español");
     document.querySelectorAll("[data-alt-es]").forEach(function (el) {
-      el.setAttribute(el.tagName === "IFRAME" ? "title" : "alt", el.getAttribute("data-alt-" + lang));
+      el.setAttribute("alt", el.getAttribute("data-alt-" + lang));
     });
+    pintarVideos(lang);
   }
 
   var inicial = null;
@@ -34,24 +35,46 @@
     if (LINKEDIN_URL) a.href = LINKEDIN_URL; // si está vacío, queda el enlace escrito en el HTML
   });
 
-  // Vídeos de YouTube (youtube-nocookie, solo si hay enlace)
+  // Vídeos de YouTube: uno por idioma. Hasta que se pulsa solo hay un botón propio,
+  // así que la página no pide nada a YouTube (tampoco la miniatura).
   function idYoutube(url) {
     var m = String(url).match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
     return m ? m[1] : (/^[A-Za-z0-9_-]{11}$/.test(url) ? url : null);
   }
-  document.querySelectorAll("[data-video]").forEach(function (caja) {
-    var id = idYoutube(VIDEOS[caja.getAttribute("data-video")] || "");
-    if (!id) { caja.hidden = true; return; }
-    var f = document.createElement("iframe");
-    f.src = "https://www.youtube-nocookie.com/embed/" + id;
-    f.loading = "lazy";
-    f.allow = "accelerometer; encrypted-media; picture-in-picture";
-    f.allowFullscreen = true;
-    f.setAttribute("data-alt-es", "Vídeo de la " + caja.getAttribute("data-titulo-es"));
-    f.setAttribute("data-alt-en", "Video: " + caja.getAttribute("data-titulo-en"));
-    caja.appendChild(f);
-    caja.hidden = false;
-  });
+  function texto(etiqueta, clase, contenido) {
+    var el = document.createElement(etiqueta);
+    el.className = clase;
+    el.textContent = contenido;
+    return el;
+  }
+  function pintarVideos(lang) {
+    document.querySelectorAll("[data-video]").forEach(function (caja) {
+      var id = idYoutube((VIDEOS[caja.getAttribute("data-video")] || {})[lang] || "");
+      caja.textContent = ""; // al cambiar de idioma se quita el reproductor del otro
+      caja.hidden = !id;
+      if (!id) return;
+      var titulo = caja.getAttribute("data-titulo-" + lang);
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "video-boton";
+      var icono = texto("span", "video-play", "");
+      icono.setAttribute("aria-hidden", "true");
+      b.appendChild(icono);
+      b.appendChild(texto("span", "video-texto", (lang === "es" ? "Ver el vídeo · " : "Watch the video · ") + titulo));
+      b.appendChild(texto("span", "video-nota", lang === "es" ? "Se carga desde YouTube al pulsar" : "Loads from YouTube when you click"));
+      b.addEventListener("click", function () {
+        var f = document.createElement("iframe");
+        f.title = (lang === "es" ? "Vídeo de la " : "Video: ") + titulo;
+        f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+        f.allowFullscreen = true;
+        f.referrerPolicy = "strict-origin-when-cross-origin";
+        f.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0&cc_load_policy=0&hl=" + lang;
+        caja.replaceChild(f, b);
+        f.focus();
+      });
+      caja.appendChild(b);
+    });
+  }
 
   aplicar(inicial);
 
